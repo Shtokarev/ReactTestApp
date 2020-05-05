@@ -1,0 +1,18 @@
+@import "../../styles/variables";
+@import "../../styles/typography";
+
+.main {
+  @include formsubheader;
+  @include errorMsgColor;
+  border-radius: $uiBorderRadius;
+  font-weight: 600;
+
+  .messageBody {
+    font-size: $normalSize;
+  }
+
+  .progressBar {
+    height: 8px;
+    background: linear-gradient(to right, $errorColor, $errorBackgroundColor);
+  }
+}
