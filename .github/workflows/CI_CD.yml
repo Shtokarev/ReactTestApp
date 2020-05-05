@@ -23,8 +23,7 @@ jobs:
         env:
           ENV_FILE: ${{ secrets.ENV_FILE }}
         run: |
-          mkdir dev
-          echo "$ENV_FILE" > ./dev/.env
+          echo "$ENV_FILE" > .env
 
         # shell: bash
       - name: Use Node.js ${{ matrix.node-version }}
