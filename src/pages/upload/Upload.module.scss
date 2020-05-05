@@ -1,0 +1,93 @@
+@import "../../styles/variables";
+@import "../../styles/typography";
+@import "../../styles/media";
+@import "../../styles/mixin";
+
+.page {
+  height: 100vh;
+  color: $primaryColor;
+  background-color: $backgroundWrapColor;
+  display: flex;
+  flex-direction: row;
+  @include scroll();
+}
+
+.contentContainer {
+  margin: 0;
+}
+
+.form {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.title {
+  @include h4;
+  margin-bottom: 22px;
+}
+
+.input {
+  margin-bottom: 22px;
+}
+
+.mainLogo {
+  flex: 1 1 130px;
+  justify-content: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signUpButton {
+  font-size: 12px;
+  display: block;
+  font-weight: 400;
+  flex: 1 1 150px;
+  // height: 35px;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: $accentColor;
+  background-color: $backgroundWrapColor;
+  margin-right: 22px;
+
+  &:hover {
+    background-color: $hoverAccentLight;
+  }
+}
+
+.submitButton {
+  padding-left: 16px;
+  padding-right: 16px;
+  flex: 1 1 150px;
+  font-size: 12px;
+}
+
+.formError {
+  position: absolute;
+  // bottom: -24px;
+  left: 0;
+  right: 0;
+  font-size: 12px;
+  padding: 10px 0 0 10px;
+  margin: 0;
+  color: $errorColor;
+  bottom: 0;
+  transform: translateY(100%);
+}
+
+@include mobileAndPortrait {
+  .form {
+    width: 100%;
+  }
+}
+
+@include mobile {
+  .submitButton,
+  .signUpButton {
+    margin-top: 20px;
+  }
+}
