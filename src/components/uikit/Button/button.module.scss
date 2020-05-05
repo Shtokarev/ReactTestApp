@@ -1,0 +1,44 @@
+@import "../../../styles/variables";
+
+.button {
+  cursor: pointer;
+  font-family: $primaryFont;
+  font-size: 18px;
+  font-weight: 700;
+  width: 100%;
+  height: 35px;
+  text-align: center;
+  color: $backgroundMainColor;
+  background-color: $accentColor;
+  transition: background-color $duration ease;
+  user-select: none;
+  outline: none;
+  padding: 1px 20px 2px 20px;
+  white-space: nowrap;
+}
+
+.rounded {
+  border: 1px solid $accentColor;
+  border-radius: $uiBorderRadius;
+}
+
+.button:hover {
+  background-color: $hoverAccentDark;
+  border-color: $hoverAccentDark;
+}
+
+button.disabled {
+  border-color: $disabledColor;
+  pointer-events: none;
+  background-color: $disabledAccentLight;
+}
+
+.secondary {
+  border: 1px solid gray;
+  &:active {
+    border: 2px solid gray;
+  }
+}
+
+.iconed {
+}
