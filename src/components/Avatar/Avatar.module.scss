@@ -1,0 +1,12 @@
+@import "../../styles/variables";
+
+.avatar {
+  height: 52px;
+  width: 52px;
+  border: 1px solid $grayColor;
+  border-radius: 50%;
+}
+
+.noBorder {
+  border: none;
+}

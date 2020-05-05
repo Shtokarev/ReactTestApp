@@ -1,0 +1,47 @@
+@import "../../styles/variables";
+@import "../../styles/media";
+
+.headerFrame {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $primaryFont;
+  background-color: $backgroundMainColor;
+  border-radius: 20px;
+  border: 1px solid $borderColor;
+  margin: 0 22px 49px 22px;
+  padding: 12px 14px 12px 39px;
+  flex: 0 0 auto;
+
+  & > span {
+    font-weight: 700;
+    font-size: 25px;
+    color: $accentColor;
+  }
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & > span {
+    font-weight: 400;
+    font-size: 20px;
+    color: $grayColor;
+    margin-right: 22px;
+  }
+}
+
+@include mobileAndPortrait {
+  .headerFrame {
+    margin-left: 11px;
+    margin-right: 11px;
+  }
+}
+
+@include mobile {
+  .userContainer > span {
+    display: none;
+  }
+}

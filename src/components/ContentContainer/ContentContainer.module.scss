@@ -1,0 +1,87 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+@import "../../styles/media";
+
+.container {
+  @include scroll();
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: $backgroundWrapColor;
+  overflow: auto;
+  max-height: 100%;
+  flex: 1 1 100%;
+  margin: 28px 22px;
+  padding: 0;
+}
+
+.centred {
+  justify-content: flex-start;
+}
+
+.centerContent {
+  display: flex;
+  flex: 100 100 100%;
+  margin: 0 22px;
+  align-items: center;
+  min-height: min-content;
+}
+
+.centerVertical {
+  flex: 1 1 130px;
+}
+
+.centerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 13px 0;
+}
+
+.leftSpace,
+.rightSpace {
+  width: 120px;
+  height: 1px;
+  flex: 1 1 auto;
+}
+
+.leftSpace {
+  flex-shrink: 0;
+}
+
+.wider {
+  @include mobileAndTablet {
+    .centerContainer {
+      width: 100%;
+    }
+
+    .rightSpace {
+      display: none;
+    }
+  }
+}
+
+@include mobileAndPortrait {
+  .container {
+    margin-left: 11px;
+    margin-right: 11px;
+  }
+
+  .centerContainer {
+    width: 100%;
+  }
+
+  .rightSpace {
+    display: none;
+  }
+}
+
+@include mobile {
+  .container {
+    margin: 28px 0;
+  }
+
+  .leftSpace {
+    display: none;
+  }
+}
