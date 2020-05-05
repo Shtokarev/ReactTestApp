@@ -1,0 +1,184 @@
+@import "../../../styles/variables";
+@import "../../../styles/typography";
+
+.SelectFieldBase {
+  width: 100%;
+  @include forminputtext;
+  color: $primaryColor;
+
+  &.error {
+    .react-select__control {
+      color: $errorColor;
+    }
+  }
+
+  .SelectFieldLabel {
+    font-weight: 600;
+    padding-left: 20px;
+  }
+
+  .react-select__control {
+    border-width: 0 0 1px 0;
+    border-radius: 0;
+    border-color: $primaryColor !important;
+    box-shadow: none;
+    background-color: $backgroundMainColor;
+    padding: 4px 0;
+    min-height: 33px;
+  }
+
+  .react-select__indicator-separator {
+    display: none;
+  }
+
+  .react-select__input {
+    // hide keychain icon in Safari
+    input::-webkit-contacts-auto-fill-button {
+      visibility: hidden;
+      display: none !important;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+    }
+    input::-webkit-credentials-auto-fill-button {
+      visibility: hidden;
+      display: none !important;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+    }
+
+    &:hover {
+      border: 0 !important;
+    }
+  }
+
+  .react-select__dropdown-indicator {
+    color: $primaryColor;
+    padding: 0 8px;
+  }
+
+  .react-select__menu-list {
+    padding: 6px 0;
+  }
+
+  .react-select__menu {
+    margin-top: 6px;
+    border-radius: 0;
+  }
+
+  .react-select__option--is-focused {
+    background: none;
+
+    &:hover {
+      background-color: $accentColor;
+    }
+  }
+
+  .react-select__option:hover {
+    background-color: lightgray;
+  }
+
+  .react-select__option:active {
+    background-color: darkgray;
+  }
+
+  .react-select__option--is-selected {
+    background-color: gray;
+  }
+
+  .react-select__value-container {
+    padding: 0 0 0 18px;
+  }
+
+  .react-select__single-value {
+    color: inherit;
+  }
+
+  .react-select__placeholder {
+    font-size: 14px;
+    color: $placeholderColor;
+  }
+
+  .react-select__clear-indicator {
+    display: none;
+  }
+
+  .react-select__multi-value {
+    background: $backgroundHoverColor;
+    padding-right: 4px;
+    margin: 5px;
+  }
+
+  .react-select__multi-value__remove {
+    transition: color $duration;
+  }
+
+  .react-select__multi-value__remove:hover {
+    background: $backgroundHoverColor;
+    color: $primaryColor;
+    @include faster;
+  }
+
+  .react-select__multi-value__label {
+    padding: 0px 5px 0 10px;
+    background: #f7e4de;
+    font-size: 14px;
+    line-height: 26px;
+  }
+
+  .react-select__option {
+    padding: 10px 20px;
+  }
+
+  &.hideArrow {
+    .react-select__dropdown-indicator {
+      display: none;
+    }
+  }
+}
+
+.SelectFieldBase.bootstrapWrapper {
+  .react-select__menu {
+    border-radius: $uiBorderRadius;
+  }
+
+  .react-select__control {
+    border: 1px solid;
+    border-radius: $uiBorderRadius;
+    border-color: $inputBorderColor !important;
+  }
+
+  .react-select__option {
+    padding: 11px 20px;
+    position: relative;
+  }
+
+  .react-select__menu-list {
+    padding: 5px;
+  }
+
+  .react-select__option--is-selected {
+    background: transparent;
+    color: $primaryColor;
+    font-weight: 600;
+  }
+
+  .react-select__option:hover {
+    background-color: transparent;
+    color: $primaryColorAdvertisers;
+  }
+
+  .react-select__option:hover::after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: lighten($backgroundHoverColor, 5%);
+    border-radius: $uiBorderRadius;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+}

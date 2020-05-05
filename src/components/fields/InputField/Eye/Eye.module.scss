@@ -1,0 +1,28 @@
+@import "../../../../styles/variables";
+
+.eye {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: color $duration;
+  overflow: hidden;
+  user-select: none;
+
+  &:hover {
+    color: $primaryColor;
+    @include faster;
+  }
+}
+
+.open,
+.close {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -13px 0 0 -15px;
+}
+
+.open {
+  margin: -16px 0 0 -16px;
+}

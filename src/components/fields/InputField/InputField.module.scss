@@ -1,0 +1,81 @@
+@import "../../../styles/variables";
+@import "../../../styles/typography";
+
+.input {
+  width: 100%;
+}
+
+.eye {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  margin-top: -15px;
+}
+
+.wrapper {
+  &.error {
+    background-color: $errorBackgroundColor;
+  }
+}
+
+.bootstrapStyle {
+  background-color: $backgroundMainColor;
+  border-radius: $uiBorderRadius;
+  border: 1px solid $inputBorderColor;
+
+  & > input {
+    @include forminputtext;
+    padding: 8px 20px;
+    border-radius: $uiBorderRadius;
+  }
+}
+
+.input {
+  display: block;
+  box-sizing: border-box;
+  padding: 11px 20px;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  outline: none;
+  font-family: $primaryFont;
+  color: $primaryColor;
+  box-shadow: none;
+  font-size: 12px;
+
+  &[name="password"] {
+    padding-right: 50px;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-text-fill-color: $grayColor;
+    // background: $backgroundAside;
+    -webkit-box-shadow: 0 0 0px 1000px $backgroundMainColor inset;
+    box-shadow: 0 0 0px 1000px $backgroundMainColor inset;
+  }
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  &::-ms-reveal {
+    display: none;
+  }
+
+  &::-webkit-contacts-auto-fill-button,
+  &::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+  }
+
+  &::placeholder {
+    color: $placeholderColor;
+  }
+  // caret-color: white;
+}

@@ -1,0 +1,93 @@
+@import "../../../styles/variables";
+@import "../../../styles/typography";
+@import "../../../styles/media";
+
+.wrapper {
+  position: relative;
+  color: $primaryColor;
+}
+
+.label {
+  display: block;
+  @include formlabel;
+  padding-left: 20px;
+  margin-bottom: 5px;
+  min-height: 14px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.requiredmark {
+    &:after {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: text-top;
+      background: $primaryColor;
+      margin-left: 8px;
+    }
+  }
+}
+
+.description {
+  @include formsubheader;
+  padding-left: 20px;
+}
+
+.error {
+  position: absolute;
+  font-size: 12px;
+  padding-top: 4px;
+  padding-left: 8px;
+  margin: 0;
+  color: $errorColor;
+}
+
+.control {
+  position: relative;
+}
+
+.bootstrapStyle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .label {
+    display: block;
+    position: absolute;
+    transform: translateX(-100%);
+    left: 0;
+    @include formlabel;
+    padding: 0 15px 0 0;
+    white-space: nowrap;
+  }
+
+  .remove {
+    right: 5px;
+  }
+
+  .control {
+    flex: 1 1 auto;
+  }
+
+  .error {
+    padding-top: 0;
+  }
+}
+
+@include mobile {
+  .bootstrapStyle {
+    display: block;
+
+    .label {
+      position: static;
+      transform: none;
+      padding-left: 10px;
+      margin-bottom: 5px;
+      min-height: 14px;
+    }
+  }
+}
