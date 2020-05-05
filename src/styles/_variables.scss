@@ -1,0 +1,66 @@
+// fonts
+
+$primaryFont: "Montserrat";
+$secondaryFont: "Open Sans";
+$normalSize: 14px;
+
+//aside
+$asideMenuWidth: 325px;
+
+// colors
+$backgroundAside: #0f1932;
+$grayColor: #707070;
+// $backgroundAside: #0d1834;
+$backgroundMainColor: #ffffff;
+$backgroundWrapColor: #f8f8f8;
+$borderColor: #cacaca;
+
+$backgroundMainColorAdvertisers: #313c53;
+$backgroundWrapColorAdvertisers: #39455b;
+
+$backgroundColor: #282c34;
+
+$backgroundHoverColor: #384068;
+
+$primaryColorAdvertisers: white;
+$primaryColor: #0f1932;
+
+$accentColor: #e61e62;
+$hoverAccentLight: #ff216b21;
+$hoverAccentDark: #ff216b; // #e61e629c;
+
+$disabledAccentLight: #ff216b61;
+
+$inputBorderColor: #e2e2e2;
+
+$disabledColor: #cbcbcb;
+$placeholderColor: rgba(128, 128, 128, 0.2);
+$shadowBackgroundColor: rgba(10, 10, 10, 0.52);
+
+$lightGreen: #09d3ac;
+
+$errorColor: #e61e62;
+
+$errorBackgroundColor: #e61e611c;
+
+$duration: 0.35s;
+
+$shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+$greenColor: #639500;
+$orangeColor: #f27e28;
+$redColor: #de2926;
+$yellowColor: #f7ee47;
+
+$radioButtonColor: #c6748e;
+$radioButtonHoverColor: $hoverAccentLight;
+
+$uiBorderRadius: 6px;
+
+@mixin faster {
+  transition-duration: $duration/2;
+}
+
+@mixin fastest {
+  transition-duration: $duration/4;
+}

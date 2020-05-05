@@ -1,0 +1,29 @@
+@import "../../styles/variables";
+@import "../../styles/typography";
+@import "../../styles/media";
+
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+
+  & > img:first-child {
+    margin: 26px;
+    height: 50px;
+  }
+
+  & > img:last-child {
+    margin-left: 15px;
+  }
+}
+
+@include mobile {
+  .logoContainer {
+    margin-bottom: 16px;
+
+    & > img:first-child {
+      height: 45px;
+    }
+  }
+}
