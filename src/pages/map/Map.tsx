@@ -1,7 +1,6 @@
 import React from "react";
 import mapboxgl from "mapbox-gl";
 import css from "./Map.module.scss";
-import "mapbox-gl/dist/mapbox-gl.css";
 
 const accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN || "";
 mapboxgl.accessToken = accessToken;
