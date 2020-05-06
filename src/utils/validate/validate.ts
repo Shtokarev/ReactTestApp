@@ -1,5 +1,6 @@
 import format from 'string-template';
-import { Validator } from 'class-validator';
+import isEmail from 'validator/lib/isEmail';
+import isURL from 'validator/lib/isURL';
 
 export interface IOption {
   value: string | number;
@@ -18,8 +19,6 @@ export const MESSAGE_MUST_BIGGER_OR_EQUAL =
   'Value must be greater or equal than {fieldName}';
 export const MESSAGE_MUST_LOWER_OR_EQUAL =
   'Value must be lower or equal than {fieldName}';
-
-const validator = new Validator();
 
 export const compose = (validators: any[]) => (value?: string) =>
   validators.reduce((error, validator) => error || validator(value), undefined);
@@ -55,11 +54,11 @@ export const maxLength = (
 };
 
 export const validateEmail = (mail: string) => {
-  return validator.isEmail(mail);
+  return isEmail(mail);
 };
 
 export const validateURL = (url: string) => {
-  return validator.isURL(url);
+  return isURL(url);
 };
 
 export const email = () => {

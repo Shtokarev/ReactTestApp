@@ -3,38 +3,32 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { Form } from "react-final-form";
 
-import { MainLogo } from "../../components/MainLogo/MainLogo";
-import { asThunk } from "../../stores/common/thunk.helper";
-import {
-  authByEmail,
-  setToastifyError,
-  uploadMapboxTileset,
-} from "../../stores";
-import { InputIconField } from "../../components/fields";
-import { ContentContainer } from "../../components/ContentContainer/ContentContainer";
-import { Button } from "../../components/uikit/Button";
-import { routes } from "../../routes";
+import { MainLogo } from "../../../components/MainLogo/MainLogo";
+import { setToastifyError } from "../../../stores";
+import { uploadMapboxTileset } from "../../../api/mapboxApi";
+import { InputIconField } from "../../../components/fields";
+import { ContentContainer } from "../../../components/ContentContainer/ContentContainer";
+import { Button } from "../../../components/uikit/Button";
+import { routes } from "../../../routes";
 import css from "./Upload.module.scss";
 
 interface UploadProps {
-  authByEmail: any;
-  uploadMapboxTileset: typeof uploadMapboxTileset;
   setToastifyError: typeof setToastifyError;
   push: (path: string) => any;
 }
 
-const Upload: React.FC<UploadProps> = ({
-  uploadMapboxTileset,
-  setToastifyError,
-  push,
-}) => {
+const Upload: React.FC<UploadProps> = ({ setToastifyError, push }) => {
   const onSubmitUpload = async (values: any) => {
     const { file } = values;
 
-    uploadMapboxTileset({
-      tilesetName: "test2tileSetName",
-      file,
-    });
+    try {
+      await uploadMapboxTileset("test2tileSetName", file);
+      push(routes.map());
+    } catch (error) {
+      setToastifyError(error);
+      debugger;
+      console.log(error);
+    }
   };
 
   const goHome = () => push(routes.home());
@@ -91,8 +85,6 @@ const Upload: React.FC<UploadProps> = ({
 };
 
 const mapDispatchToProps = {
-  authByEmail: asThunk(authByEmail),
-  uploadMapboxTileset,
   setToastifyError,
   push,
 };

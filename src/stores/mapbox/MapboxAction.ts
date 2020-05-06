@@ -21,26 +21,10 @@ export const setMapboxS3Creds = generateActionCreator<
   MapboxS3Creds
 >('MAPBOX_SET_S3_CRED');
 
-// UploadMapboxTilesetAction
-export interface UploadMapboxTilesetPayload {
-  tilesetName: string;
-  file: string | any;
-}
-export type UploadMapboxTilesetAction = BaseActionType<
-  'MAPBOX_UPLOAD_TILESET',
-  UploadMapboxTilesetPayload
->;
-export const uploadMapboxTileset = generateActionCreator<
-  'MAPBOX_UPLOAD_TILESET',
-  UploadMapboxTilesetPayload
->('MAPBOX_UPLOAD_TILESET');
-
 export type MapboxActionType =
   | 'MAPBOX_GET_S3_CRED'
-  | 'MAPBOX_SET_S3_CRED'
-  | 'MAPBOX_UPLOAD_TILESET';
+  | 'MAPBOX_SET_S3_CRED';
 
 export type MapboxAction =
   | GetMapboxS3CredsAction
-  | SetMapboxS3CredsAction
-  | UploadMapboxTilesetAction;
+  | SetMapboxS3CredsAction;

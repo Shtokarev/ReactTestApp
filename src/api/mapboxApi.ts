@@ -54,7 +54,7 @@ export async function uploadTileset(tilesetName: string, file: any) {
         .catch(error => reject(error)));
 
     console.log(credentials)
-    debugger;
+    // debugger;
 
     const s3 = new AWS.S3({
       accessKeyId: credentials.accessKeyId,
@@ -70,7 +70,7 @@ export async function uploadTileset(tilesetName: string, file: any) {
     }).promise();
 
     console.log(result)
-    debugger;
+    // debugger;
 
     const result2 = await new Promise((resolve, reject) =>
       uploadsService
@@ -83,10 +83,25 @@ export async function uploadTileset(tilesetName: string, file: any) {
         .catch(error => reject(error)));
 
     console.log(result2)
-    debugger;
+    // debugger;
 
   } catch (error) {
     console.log(error.message);
+    debugger;
+  }
+}
+
+export async function uploadMapboxTileset(tilesetName: string, file: string | any) {
+  try {
+    await listUploads();
+
+    const response = await uploadTileset(tilesetName, file);
+
+    console.log(response);
+    // debugger;
+
+  } catch (error) {
+    console.log(error)
     debugger;
   }
 }
