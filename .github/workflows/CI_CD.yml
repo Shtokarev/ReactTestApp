@@ -24,16 +24,17 @@ jobs:
         run: |
           echo "$ENV_FILE" > .env
 
+
         # shell: bash
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
 
       - name: Run build
-        run: yarn build
+        run: npm run build
 
       - name: Create .ssh files
         env:
