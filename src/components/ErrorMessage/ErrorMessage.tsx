@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { connect } from "react-redux";
 import cn from "classnames";
 
-import { resetToastifyError } from "../../stores/error/ErrorAction";
+import { resetToastifyError } from "store";
 import css from "./ErrorMessage.module.scss";
 
 const DEFAULT_DURATION = 3000;

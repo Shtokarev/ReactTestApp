@@ -15,8 +15,9 @@ export function generateActionCreator<Type, Payload>(
   };
 }
 
-export function generateSimpleActionCreator<Type>(type: Type):
-  () => BaseActionType<Type> {
+export function generateSimpleActionCreator<Type>(
+  type: Type
+): () => BaseActionType<Type> {
   return function () {
     return {
       type,
@@ -25,4 +26,4 @@ export function generateSimpleActionCreator<Type>(type: Type):
   };
 }
 
-export const nop = generateActionCreator<'NOP_ACTION', any>('NOP_ACTION');
+export const nop = generateActionCreator<"NOP_ACTION", any>("NOP_ACTION");

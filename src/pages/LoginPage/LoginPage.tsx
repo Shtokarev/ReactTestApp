@@ -1,25 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "connected-react-router";
+import { useHistory } from "react-router-dom";
 import { FORM_ERROR } from "final-form";
 
-import { asThunk } from "../../stores/common/thunk.helper";
-import { authByEmail, AuthByEmailPayload } from "../../stores";
-import { routes } from "../../routes";
-import Login from "../../modules/Auth/Login/Login";
-import { getFingerPrintId } from "../../utils/fingerPrint";
+import { asThunk } from "store/common/thunk.helper";
+import { authByEmail, AuthByEmailPayload } from "store";
+import { routes } from "routes";
+import Login from "modules/Auth/Login/Login";
+import { getFingerPrintId } from "utils/fingerPrint";
 
 interface LoginPageDispatchProps {
   authByEmail: any;
-  push: (path: string) => any;
 }
 
-const LoginPage: React.FC<LoginPageDispatchProps> = ({ authByEmail, push }) => {
+const LoginPage: React.FC<LoginPageDispatchProps> = ({ authByEmail }) => {
+  let history = useHistory();
+
   console.log("LoginPage render!");
 
-  const goSignup = () => push(routes.signup());
+  const goSignup = () => history.push(routes.signup());
 
-  const goHome = () => push(routes.map());
+  const goHome = () => history.push(routes.map());
 
   const onSubmitLogin = async (values: any) => {
     const { email, password } = values;
@@ -45,7 +46,6 @@ const LoginPage: React.FC<LoginPageDispatchProps> = ({ authByEmail, push }) => {
 
 const mapDispatchToProps = {
   authByEmail: asThunk(authByEmail),
-  push,
 };
 
 export default connect(null, mapDispatchToProps)(LoginPage);

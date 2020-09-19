@@ -1,5 +1,5 @@
-import { UserAction } from './UserAction';
-import { UserProfile } from './UserTypes';
+import { UserAction } from "./UserAction";
+import { UserProfile } from "./UserTypes";
 
 export interface UserState {
   profile: UserProfile | null;
@@ -14,13 +14,13 @@ export function userReducer(
   action: UserAction
 ): UserState {
   switch (action.type) {
-    case 'SET_USER_PROFILE':
+    case "SET_USER_PROFILE":
       return {
         ...state,
         profile: action.payload,
       };
 
-    case 'CLEAR_USER_PROFILE':
+    case "CLEAR_USER_PROFILE":
       return {
         ...state,
         profile: null,

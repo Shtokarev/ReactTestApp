@@ -1,5 +1,5 @@
-import { AuthAction } from './AuthAction';
-import { AccountsType } from '../user/UserTypes';
+import { AuthAction } from "./AuthAction";
+import { AccountsType } from "../user/UserTypes";
 
 export interface AuthState {
   authenticated: boolean;
@@ -24,7 +24,7 @@ export function authReducer(
   action: AuthAction
 ): AuthState {
   switch (action.type) {
-    case 'AUTH_RESET':
+    case "AUTH_RESET":
       return {
         ...state,
         authenticated: false,
@@ -35,20 +35,20 @@ export function authReducer(
         loading: false,
       };
 
-    case 'AUTH_SET_LOADING':
+    case "AUTH_SET_LOADING":
       return {
         ...state,
         loading: action.payload.loading,
       };
 
-    case 'AUTH_REFRESH_TOKENS':
+    case "AUTH_REFRESH_TOKENS":
       return {
         ...state,
         authToken: action.payload.authToken,
         refreshToken: action.payload.refreshToken,
       };
 
-    case 'AUTH_SET':
+    case "AUTH_SET":
       return {
         ...state,
         authenticated: true,
@@ -58,7 +58,7 @@ export function authReducer(
         error: null,
       };
 
-    case 'AUTH_ERROR':
+    case "AUTH_ERROR":
       return {
         ...state,
         error: action.payload.error,

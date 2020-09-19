@@ -1,4 +1,4 @@
-export type AccountsType = 'guest' | 'user' | 'admin';
+export type AccountsType = "guest" | "user" | "admin";
 
 export interface UserProfile {
   _id?: string;

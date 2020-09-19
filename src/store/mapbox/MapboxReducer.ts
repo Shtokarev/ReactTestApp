@@ -1,5 +1,5 @@
-import { MapboxAction } from './MapboxAction';
-import { MapboxS3Creds } from './MapboxTypes';
+import { MapboxAction } from "./MapboxAction";
+import { MapboxS3Creds } from "./MapboxTypes";
 
 export interface MapboxState {
   s3Credentials: MapboxS3Creds | null;
@@ -14,7 +14,7 @@ export function mapboxReducer(
   action: MapboxAction
 ): MapboxState {
   switch (action.type) {
-    case 'MAPBOX_SET_S3_CRED':
+    case "MAPBOX_SET_S3_CRED":
       return {
         ...state,
         s3Credentials: action.payload,

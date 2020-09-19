@@ -1,23 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "connected-react-router";
+import { useHistory } from "react-router-dom";
 import { FORM_ERROR } from "final-form";
 
-import { asThunk } from "../../stores/common/thunk.helper";
-import { authByEmail, registerUser, RegisterPayload } from "../../stores";
-import Signup, { Values } from "../../modules/Auth/Signup/Signup";
-import { getFingerPrintId } from "../../utils/fingerPrint";
-import { routes } from "../../routes";
+import { asThunk } from "store/common/thunk.helper";
+import { authByEmail, registerUser, RegisterPayload } from "store";
+import Signup, { Values } from "modules/Auth/Signup/Signup";
+import { getFingerPrintId } from "utils/fingerPrint";
+import { routes } from "routes";
 
 interface SignupPageProps {
   registerUser: any;
   authByEmail: any;
-  push: (path: string) => any;
 }
 
 const SignupPage: React.FC<SignupPageProps> = (props) => {
+  let history = useHistory();
+
   console.log("SignupPage render!");
-  const { registerUser, push } = props;
+  const { registerUser } = props;
 
   const onSubmitSignup = async (values: Values) => {
     if (!values.email) {
@@ -54,9 +55,9 @@ const SignupPage: React.FC<SignupPageProps> = (props) => {
     }
   };
 
-  const goSignin = () => push(routes.login());
+  const goSignin = () => history.push(routes.login());
 
-  const goHome = () => push(routes.map());
+  const goHome = () => history.push(routes.map());
 
   return (
     <Signup goSignin={goSignin} goHome={goHome} onSubmit={onSubmitSignup} />
@@ -66,7 +67,6 @@ const SignupPage: React.FC<SignupPageProps> = (props) => {
 const mapDispatchToProps = {
   registerUser: asThunk(registerUser),
   authByEmail: asThunk(authByEmail),
-  push,
 };
 
 export default connect(null, mapDispatchToProps)(SignupPage);

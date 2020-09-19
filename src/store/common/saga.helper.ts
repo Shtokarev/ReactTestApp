@@ -1,8 +1,8 @@
-import { put } from 'redux-saga/effects';
+import { put } from "redux-saga/effects";
 
-import { rejectWith } from './thunk.helper';
-import { setAuthError } from '../auth/AuthAction';
-import { nop } from './base.actions';
+import { rejectWith } from "./thunk.helper";
+import { setAuthError } from "../auth/AuthAction";
+import { nop } from "./base.actions";
 
 export function* finalFormErrorHandler(action: any, error: any) {
   try {
@@ -26,4 +26,3 @@ export function* finalFormErrorHandler(action: any, error: any) {
     console.error(error);
   }
 }
-

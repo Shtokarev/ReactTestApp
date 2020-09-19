@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import cn from "classnames";
 
-import { Avatar } from "../Avatar/Avatar";
-import { UserState, AppState } from "../../stores";
+import { UserState, AppState } from "store";
+import { Avatar } from "components/Avatar/Avatar";
 import css from "./ContentContainerHeader.module.scss";
 
 interface ContentContainerHeaderProps {

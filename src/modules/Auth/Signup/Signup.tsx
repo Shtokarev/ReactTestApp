@@ -3,18 +3,18 @@ import { Form, FormSpy } from "react-final-form";
 import { FormState } from "final-form";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { MainLogo } from "../../../components/MainLogo/MainLogo";
+import { MainLogo } from "components/MainLogo/MainLogo";
 import {
   InputField,
   InputFieldFinal,
   SelectField,
   SelectFieldFinal,
   IOption,
-} from "../../../components/fields";
-import { ContentContainer } from "../../../components/ContentContainer/ContentContainer";
-import Validate from "../../../utils/validate";
-import { Button } from "../../../components/uikit/Button";
-import { AccountsType } from "../../../stores";
+} from "components/fields";
+import { ContentContainer } from "components/ContentContainer/ContentContainer";
+import Validate from "utils/validate";
+import { Button } from "components/uikit/Button";
+import { AccountsType } from "store";
 import css from "./Signup.module.scss";
 
 export interface AccountTypeSelectOption extends IOption {

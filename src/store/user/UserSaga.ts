@@ -1,19 +1,18 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery } from "redux-saga/effects";
 
-import { RegisterUserAction, UserAction, UserActionType, } from './UserAction';
-import { setUserProfile } from './UserAction'
-import { setAuthLoading, setAuth, } from '../auth/AuthAction';
-import { resolveWith } from '../common/thunk.helper';
-import { api } from '../../services/api';
-import { UserProfile } from './UserTypes';
-import { finalFormErrorHandler } from '../common/saga.helper';
-
+import { RegisterUserAction, UserAction, UserActionType } from "./UserAction";
+import { setUserProfile } from "./UserAction";
+import { setAuthLoading, setAuth } from "../auth/AuthAction";
+import { resolveWith } from "../common/thunk.helper";
+import { api } from "../../services/api";
+import { UserProfile } from "./UserTypes";
+import { finalFormErrorHandler } from "../common/saga.helper";
 
 function* registerHandler(action: RegisterUserAction) {
   try {
     yield put(setAuthLoading({ loading: true }));
 
-    const response = yield call(api.rawPost, 'auth/sign-up', action.payload);
+    const response = yield call(api.rawPost, "auth/sign-up", action.payload);
     const { data } = response.data;
 
     const profile: UserProfile = {
@@ -37,7 +36,6 @@ function* registerHandler(action: RegisterUserAction) {
         })
       )
     );
-
   } catch (error) {
     yield finalFormErrorHandler(action, error);
   }
@@ -52,5 +50,5 @@ function handle<T extends UserAction>(
 }
 
 export default function* authSaga() {
-  yield handle('AUTH_REGISTER_USER', registerHandler);
+  yield handle("AUTH_REGISTER_USER", registerHandler);
 }

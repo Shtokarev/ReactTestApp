@@ -1,7 +1,7 @@
-import { call, put, all, takeEvery, select } from 'redux-saga/effects';
+import { call, put, all, takeEvery, select } from "redux-saga/effects";
 
-import { saveState } from '../../utils/stateLocalStorage';
-import { AppState } from '../index';
+import { saveState } from "../../utils/stateLocalStorage";
+import { AppState } from "../index";
 import {
   AuthActionType,
   AuthAction,
@@ -9,20 +9,19 @@ import {
   resetAuth,
   setAuthLoading,
   setAuth,
-} from './AuthAction';
-import { setUserProfile, clearUserProfile } from '../user/UserAction'
-import { AuthSetAction } from './AuthAction';
-import { resolveWith } from '../common/thunk.helper';
-import { api, setBearerToken } from '../../services/api';
-import { UserProfile } from '../user/UserTypes';
-import { finalFormErrorHandler } from '../common/saga.helper';
-
+} from "./AuthAction";
+import { setUserProfile, clearUserProfile } from "../user/UserAction";
+import { AuthSetAction } from "./AuthAction";
+import { resolveWith } from "../common/thunk.helper";
+import { api, setBearerToken } from "../../services/api";
+import { UserProfile } from "../user/UserTypes";
+import { finalFormErrorHandler } from "../common/saga.helper";
 
 function* authByEmailHandler(action: AuthByEmailAction) {
   try {
     yield put(setAuthLoading({ loading: true }));
 
-    const response = yield call(api.rawPost, 'auth/sign-in', action.payload);
+    const response = yield call(api.rawPost, "auth/sign-in", action.payload);
     const { data } = response.data;
 
     const profile: UserProfile = {
@@ -46,7 +45,6 @@ function* authByEmailHandler(action: AuthByEmailAction) {
         })
       )
     );
-
   } catch (error) {
     yield finalFormErrorHandler(action, error);
   }
@@ -57,10 +55,7 @@ const getAuth = (state: AppState) => state.auth;
 
 function* logoutHandler() {
   try {
-    const tasks = [
-      put(resetAuth()),
-      put(clearUserProfile()),
-    ];
+    const tasks = [put(resetAuth()), put(clearUserProfile())];
 
     yield all(tasks);
   } catch (e) {
@@ -96,9 +91,9 @@ function handle<T extends AuthAction>(
 }
 
 export default function* authSaga() {
-  yield handle('AUTH_SET', setTokenHandler);
-  yield handle('AUTH_REFRESH_TOKENS', setTokenHandler);
-  yield handle('AUTH_LOGIN_BY_EMAIL', authByEmailHandler);
-  yield handle('AUTH_LOGOUT', logoutHandler);
-  yield handle('AUTH_RESET', resetAuthHandler);
+  yield handle("AUTH_SET", setTokenHandler);
+  yield handle("AUTH_REFRESH_TOKENS", setTokenHandler);
+  yield handle("AUTH_LOGIN_BY_EMAIL", authByEmailHandler);
+  yield handle("AUTH_LOGOUT", logoutHandler);
+  yield handle("AUTH_RESET", resetAuthHandler);
 }

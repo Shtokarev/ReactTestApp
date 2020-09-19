@@ -1,29 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "connected-react-router";
+import { useHistory } from "react-router-dom";
 import { Form } from "react-final-form";
 
-import { MainLogo } from "../../../components/MainLogo/MainLogo";
-import { setToastifyError } from "../../../stores";
-import { uploadMapboxTileset } from "../../../api/mapboxApi";
-import { InputIconField } from "../../../components/fields";
-import { ContentContainer } from "../../../components/ContentContainer/ContentContainer";
-import { Button } from "../../../components/uikit/Button";
-import { routes } from "../../../routes";
+import { MainLogo } from "components/MainLogo/MainLogo";
+import { setToastifyError } from "store";
+import { uploadMapboxTileset } from "api/mapboxApi";
+import { InputIconField } from "components/fields";
+import { ContentContainer } from "components/ContentContainer/ContentContainer";
+import { Button } from "components/uikit/Button";
+import { routes } from "routes";
 import css from "./Upload.module.scss";
 
 interface UploadProps {
   setToastifyError: typeof setToastifyError;
-  push: (path: string) => any;
 }
 
-const Upload: React.FC<UploadProps> = ({ setToastifyError, push }) => {
+const Upload: React.FC<UploadProps> = ({ setToastifyError }) => {
+  let history = useHistory();
+
   const onSubmitUpload = async (values: any) => {
     const { file } = values;
 
     try {
       await uploadMapboxTileset("test2tileSetName", file);
-      push(routes.map());
+      history.push(routes.map());
     } catch (error) {
       setToastifyError(error);
       debugger;
@@ -31,7 +32,7 @@ const Upload: React.FC<UploadProps> = ({ setToastifyError, push }) => {
     }
   };
 
-  const goHome = () => push(routes.home());
+  const goHome = () => history.push(routes.home());
 
   const renderInputs = () => (
     <>
@@ -86,7 +87,6 @@ const Upload: React.FC<UploadProps> = ({ setToastifyError, push }) => {
 
 const mapDispatchToProps = {
   setToastifyError,
-  push,
 };
 
 export default connect(null, mapDispatchToProps)(Upload);

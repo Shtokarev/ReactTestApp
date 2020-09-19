@@ -1,9 +1,14 @@
-import axios, { AxiosInstance, AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
-import { AnyAction } from 'redux';
-import { Dispatch } from 'react';
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  AxiosError,
+  AxiosRequestConfig,
+} from "axios";
+import { AnyAction } from "redux";
+import { Dispatch } from "react";
 
-import { getFingerPrintId } from "../utils/fingerPrint";
-import { setRefreshTokens, RefreshTokensPayload, logoutAuth } from '../stores';
+import { getFingerPrintId } from "utils/fingerPrint";
+import { setRefreshTokens, RefreshTokensPayload, logoutAuth } from "store";
 
 let authToken: string | null = null;
 let refreshToken: string | null = null;
@@ -22,14 +27,14 @@ function generateAxiosInstance(): AxiosInstance {
     baseURL: process.env.REACT_APP_API_URL,
     headers: {
       Authorization: `Bearer ${authToken}`,
-      'Content-type': 'application/json',
+      "Content-type": "application/json",
     },
   });
 }
 
 export function setBearerToken(
   auth: string | null = null,
-  refresh: string | null = null,
+  refresh: string | null = null
 ) {
   authToken = auth;
   refreshToken = refresh;
@@ -55,8 +60,10 @@ function isTokenExpiredError(errorResponse: AxiosResponse) {
   const { status, data } = errorResponse;
   const message = data?.error?.message;
 
+  // debugger;
+
   if (status === 401) {
-    if (message === 'Expired token') {
+    if (message === "Expired token") {
       return true;
     }
   }
@@ -72,9 +79,9 @@ async function resetTokenAndReattemptRequest(error: AxiosError) {
       return Promise.reject(error);
     }
 
-    const retryOriginalRequest = new Promise(resolve => {
+    const retryOriginalRequest = new Promise((resolve) => {
       addSubscriber((access_token: string) => {
-        errorResponse!.config.headers.Authorization = 'Bearer ' + access_token;
+        errorResponse!.config.headers.Authorization = "Bearer " + access_token;
         resolve(axios(errorResponse!.config));
       });
     });
@@ -84,7 +91,7 @@ async function resetTokenAndReattemptRequest(error: AxiosError) {
 
       const fingerprint = await getFingerPrintId();
 
-      const response = await instance.post('/auth/refresh-token', {
+      const response = await instance.post("/auth/refresh-token", {
         refreshToken,
         fingerprint,
       });
@@ -93,12 +100,15 @@ async function resetTokenAndReattemptRequest(error: AxiosError) {
         return Promise.reject(error);
       }
 
-      const { status, data: { data } } = response;
+      const {
+        status,
+        data: { data },
+      } = response;
       isAlreadyFetchingAccessToken = false;
 
       if (status === 201) {
         const { accessToken, refreshToken } = data;
-        console.log('Token successfully refreshed');
+        console.log("Token successfully refreshed");
 
         if (dispatchHook) {
           dispatchHook(
@@ -110,13 +120,12 @@ async function resetTokenAndReattemptRequest(error: AxiosError) {
         }
         onAccessTokenFetched(accessToken);
       } else {
-        onAccessTokenFetched('');
+        onAccessTokenFetched("");
         resetAllAuth();
       }
     }
 
     return retryOriginalRequest;
-
   } catch (err) {
     resetAllAuth();
     return Promise.reject(err);
@@ -124,7 +133,7 @@ async function resetTokenAndReattemptRequest(error: AxiosError) {
 }
 
 function onAccessTokenFetched(access_token: string) {
-  subscribers.forEach(callback => callback(access_token));
+  subscribers.forEach((callback) => callback(access_token));
   subscribers = [];
 }
 
@@ -138,9 +147,9 @@ export function setDispatchHook(dispatch: Dispatch<AnyAction>) {
 
 function authErrorHandler(e: any) {
   /// TODO insert correct checks when backend will be ready (reset auth)
-  debugger
+  // debugger
   if (e.response && e.response.data && e.response.data.statusCode === 401) {
-    debugger
+    // debugger
     resetAllAuth();
     return Promise.reject(e);
   } else {
@@ -149,7 +158,7 @@ function authErrorHandler(e: any) {
 }
 
 function resetAllAuth() {
-  console.log('auth logout');
+  console.log("auth logout");
   if (dispatchHook) {
     dispatchHook(logoutAuth());
   }
