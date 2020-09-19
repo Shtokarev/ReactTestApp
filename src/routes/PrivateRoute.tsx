@@ -9,7 +9,7 @@ import { AccountsType } from "../stores";
 type RouteFor = "authenticated" | AccountsType;
 
 interface PrivateRouteOwnProps {
-  component?: any;
+  component?: React.ComponentType<any>; // new (props: any) => any; // React.Component<any, any>;
   routeFor?: RouteFor;
 }
 
@@ -21,41 +21,30 @@ type PrivateRouteProps = RouteProps &
   PrivateRouteOwnProps &
   PrivateRouteStoreProps;
 
-class PrivateRoute<
-  T extends PrivateRouteProps = PrivateRouteProps
-> extends React.Component<T, any> {
-  render() {
-    const {
-      auth,
-      routeFor = "authenticated",
-      component: Component,
-      ...rest
-    } = this.props;
+const PrivateRoute: React.FC<PrivateRouteProps> =
+  // T extends PrivateRouteProps // = PrivateRouteProps
+  // > extends React.Component<T, any> {
+  ({ auth, routeFor = "authenticated", component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={
+        (props) => <Component {...props} />
+        // !auth.authenticated ? (
+        //   <Redirect to={routes.login()} />
+        // ) : routeFor === "authenticated" ? (
+        //   React.createElement(Component, props)
+        // ) : (routeFor === "user" && auth.role === "user") ||
+        //   (routeFor === "admin" && auth.role === "admin") ? (
+        //   <Component {...props} />
+        // ) : (
+        //   <Redirect to={routes.restricted()} />
+        // )
+      }
+    />
+  );
 
-    return (
-      <Route
-        {...rest}
-        render={(props) =>
-          !auth.authenticated ? (
-            <Redirect to={routes.login()} />
-          ) : routeFor === "authenticated" ? (
-            <Component {...props} />
-          ) : (routeFor === "user" && auth.role === "user") ||
-            (routeFor === "admin" && auth.role === "admin") ? (
-            <Component {...props} />
-          ) : (
-            <Redirect to={routes.restricted()} />
-          )
-        }
-      />
-    );
-  }
-}
-
-const mapStateToProps = (state: AppState) => {
-  return {
-    auth: state.auth,
-  };
-};
+const mapStateToProps = (state: AppState) => ({
+  auth: state.auth,
+});
 
 export default connect(mapStateToProps)(PrivateRoute);

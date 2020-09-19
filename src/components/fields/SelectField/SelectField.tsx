@@ -18,9 +18,9 @@ const SelectField: React.FC<ISelectFieldProps> = (props) => {
     <SelectFieldBase
       options={options}
       hasError={hasError}
-      value={value}
       {...input}
       {...rest}
+      value={value}
     />
   );
 

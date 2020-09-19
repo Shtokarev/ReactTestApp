@@ -18,7 +18,7 @@ import "./styles/index.scss";
 const sagaMiddleware = createSagaMiddleware();
 
 const history = createBrowserHistory({
-  basename: process.env.PUBLIC_URL,
+  // basename: process.env.PUBLIC_URL,
 });
 
 const composeEnhancer: typeof compose =

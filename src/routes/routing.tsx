@@ -10,8 +10,13 @@ import SignupPage from "../pages/SignupPage/SignupPage";
 
 export const routing = (
   <Switch>
-    <Route exact path={routes.login()} component={LoginPage} />
-    <Route exact path={routes.signup()} component={SignupPage} />
+    <Route exact path={routes.login()}>
+      <LoginPage />
+    </Route>
+
+    <Route exact path={routes.signup()}>
+      <SignupPage />
+    </Route>
 
     <PrivateRoute exact path={routes.home()} component={Home} />
     <PrivateRoute exact path={routes.map()} component={MapPage} />
